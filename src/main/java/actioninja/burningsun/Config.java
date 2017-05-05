@@ -13,7 +13,13 @@ public class Config {
             public static boolean burnInSun = true;
             @net.minecraftforge.common.config.Config.Comment({"Makes going into sun hyper-lethal.", "Adds damage per tick, which is configurable"})
             public static boolean hyperLethal = false;
-            public static int hypterLethalDamage = 10;
+            public static int hyperLethalDamage = 10;
+            @net.minecraftforge.common.config.Config.Comment({"Makes helmets block sunlight, like how they work on zombies and skeletons"})
+            public static boolean helmetsBlockSun = false;
+            @net.minecraftforge.common.config.Config.Comment({"Makes helmets take damage while blocking sunlight"})
+            public static boolean helmetsTakeDamage = true;
+            @net.minecraftforge.common.config.Config.Comment({"Acts as a multiplier to the previous setting"})
+            public static int helmetDamageMultiplier = 1;
 
         }
         public static class Developer {
