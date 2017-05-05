@@ -20,7 +20,10 @@ public class Config {
             public static boolean helmetsTakeDamage = true;
             @net.minecraftforge.common.config.Config.Comment({"Acts as a multiplier to the previous setting", "Integers only."})
             public static int helmetDamageMultiplier = 1;
-
+            @net.minecraftforge.common.config.Config.Comment({"Spawn with \"Sun block\" status effect", "Leave this on unless you have a good reason, disabling it can make the game unplayable"})
+            public static boolean spawnWithSunBlock = true;
+            @net.minecraftforge.common.config.Config.Comment({"Length (in seconds) of the \"Sun Block\" effect after spawning"})
+            public static int spawnWithSunBlockLength = 400;
         }
         public static class Developer {
             @net.minecraftforge.common.config.Config.Comment({"Turns on a bunch of debug logging stuff.", "Don't enable this unless you're a developer or want large log files."})

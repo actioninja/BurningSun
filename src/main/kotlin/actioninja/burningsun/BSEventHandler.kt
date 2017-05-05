@@ -1,9 +1,12 @@
 package actioninja.burningsun
 
+import actioninja.burningsun.potion.PotionRegistry
 import net.minecraft.entity.Entity
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.DamageSource
+import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 import org.apache.logging.log4j.Logger
@@ -13,10 +16,19 @@ import org.apache.logging.log4j.Logger
  */
 
 class BSEventHandler {
+
+
+    @SubscribeEvent
+    fun onPlayerRespawn(event: PlayerEvent.Clone){
+        if(event.isWasDeath && Config.BSConfig.Player.spawnWithSunBlock) {
+            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, Config.BSConfig.Player.spawnWithSunBlockLength))
+        }
+    }
+
     @SubscribeEvent
     fun playerTickEvent(event: TickEvent.PlayerTickEvent)
     {
-        if(event.player.world.isDaytime && event.player.world.canSeeSky(event.player.position) && !event.player.isCreative)
+        if(event.player.world.isDaytime && event.player.world.canSeeSky(event.player.position) && !event.player.isCreative && !event.player.isPotionActive(PotionRegistry.sunBlock))
         {
             var flag = true
             var itemstack = event.player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)
@@ -40,6 +52,11 @@ class BSEventHandler {
                 if(Config.BSConfig.Player.hyperLethal)
                     event.player.attackEntityFrom(DamageSource.generic, Config.BSConfig.Player.hyperLethalDamage.toFloat())
             }
+        }
+
+        if(event.player.isPotionActive(PotionRegistry.sunBlock))
+        {
+            event.player.extinguish()
         }
     }
 }

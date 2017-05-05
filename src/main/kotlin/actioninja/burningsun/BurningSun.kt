@@ -3,6 +3,7 @@ package actioninja.burningsun
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import actioninja.burningsun.Config;
+import actioninja.burningsun.potion.PotionRegistry
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 
@@ -18,11 +19,13 @@ object BurningSun {
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent)
     {
+        MinecraftForge.EVENT_BUS.register(BSEventHandler())
+        PotionRegistry.init()
     }
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent)
     {
-        var bsEventHandler: BSEventHandler = BSEventHandler()
-        MinecraftForge.EVENT_BUS.register(bsEventHandler)
+
+
     }
 }
