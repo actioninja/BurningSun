@@ -1,1 +1,1 @@
-Immersive Addons - Core
+Burning Sun - A Minecraft Challenge Mod
