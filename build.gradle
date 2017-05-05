@@ -1,0 +1,95 @@
+buildscript {
+    ext.kotlin_version = '1.1.2-2'
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url = "http://files.minecraftforge.net/maven" }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            name = "gradle plugins"
+            url = "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'kotlin'
+apply plugin: 'com.matthewprenger.cursegradle'
+
+
+if (System.getenv().BUILD_NUMBER != null) {
+	ext.buildNumber = "${System.getenv().BUILD_NUMBER}"	
+} else {
+	ext.buildNumber = "custom"	
+}
+ext.modVersion = "${mod_version}.${ext.buildNumber}"
+
+version = "${mc_version}-${ext.modVersion}"
+group = mod_classpath
+archivesBaseName = archiveBaseName
+
+sourceCompatibility = targetCompatibility = "1.8" 
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
+
+minecraft {
+    version = mc_version + "-" + forge_version
+    runDir = "run"
+    mappings = mapping_version
+    replace '@VERSION@', project.version
+    replaceIn "BurningSun"
+}
+
+repositories {
+    maven {
+        url "http://mvn.rx14.co.uk/shadowfacts/"
+    }
+    jcenter()
+    mavenCentral()
+    maven {
+        name "JEI"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name "FireBall API Depot"
+        url "http://dl.tsr.me/artifactory/libs-release/"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+}
+
+dependencies {
+    deobfCompile group: "net.shadowfacts", name: "Forgelin", version: forgelin_version
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

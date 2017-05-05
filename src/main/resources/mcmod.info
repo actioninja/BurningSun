@@ -1,0 +1,16 @@
+[
+{
+  "modid": "burningsun",
+  "name": "Burning Sun",
+  "description": "Sun is not your friend",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["actioninja"],
+  "credits": "A friend of mine for thinking of the idea",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
