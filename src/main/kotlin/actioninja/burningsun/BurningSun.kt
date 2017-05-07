@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent
  */
 
 
-@Mod(modid = BurningSun.MODID, name = "Burning Sun", version = "@VERSION@", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
+@Mod(modid = BurningSun.MODID, name = "Burning Sun", version = "@VERSION@", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter", dependencies = "required-after:forgelin@[1.3.1,);")
 object BurningSun {
     const val MODID: String = "burningsun"
 
