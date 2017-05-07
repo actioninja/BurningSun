@@ -7,7 +7,7 @@ public class Config {
     @net.minecraftforge.common.config.Config(modid = BurningSun.MODID)
     public static class BSConfig {
 
-        public static Developer developer = new Developer();
+        Player player = new Player();
         public static class Player {
             @net.minecraftforge.common.config.Config.Comment({"Makes you burn when in the sun in daylight.", "I'm not sure why you'd want to disable this, but it's here anyways"})
             public static boolean burnInSun = true;
