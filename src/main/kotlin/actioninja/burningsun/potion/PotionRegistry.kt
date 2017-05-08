@@ -12,7 +12,7 @@ object PotionRegistry {
     lateinit var sunBlock: Potion
 
     fun init() {
-        sunBlock = registerPotion("Sun Block", ResourceLocation("sunBlock"), false, 0xFFFF66, 1, 0)
+        sunBlock = registerPotion("Sun Block", ResourceLocation("sunBlock"), false, 0xFFFF66, 0, 0)
     }
 
     fun registerPotion(name: String, location: ResourceLocation, badEffect: Boolean, potionColor: Int, x: Int, y: Int): Potion{

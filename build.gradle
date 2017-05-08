@@ -30,9 +30,8 @@ if (System.getenv().BUILD_NUMBER != null) {
 } else {
 	ext.buildNumber = "custom"	
 }
-ext.modVersion = "${mod_version}.${ext.buildNumber}"
 
-version = "${mc_version}-${ext.modVersion}"
+version = "${mc_version}-${mod_version}.${ext.buildNumber}"
 group = mod_classpath
 archivesBaseName = archiveBaseName
 
@@ -93,3 +92,4 @@ processResources
         exclude 'mcmod.info'
     }
 }
+

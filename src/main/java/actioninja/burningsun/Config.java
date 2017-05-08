@@ -27,5 +27,6 @@ public class Config {
             @net.minecraftforge.common.config.Config.Comment({"Length (in something (ticks?)) of the \"Sun Block\" effect after spawning"})
             public static int spawnWithSunBlockLength = 400;
         }
+
     }
 }
