@@ -21,7 +21,7 @@ class BSEventHandler {
     @SubscribeEvent
     fun onPlayerRespawn(event: PlayerEvent.Clone){
         if(event.isWasDeath && Config.BSConfig.Player.spawnWithSunBlock) {
-            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, Config.BSConfig.Player.spawnWithSunBlockLength))
+            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, Config.BSConfig.Player.spawnWithSunBlockLength * 20))
         }
     }
 

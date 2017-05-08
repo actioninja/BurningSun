@@ -24,8 +24,8 @@ public class Config {
             public static int helmetDamageMultiplier = 1;
             @net.minecraftforge.common.config.Config.Comment({"Spawn with \"Sun block\" status effect", "Leave this on unless you have a good reason, disabling it can make the game unplayable"})
             public static boolean spawnWithSunBlock = true;
-            @net.minecraftforge.common.config.Config.Comment({"Length (in something (ticks?)) of the \"Sun Block\" effect after spawning"})
-            public static int spawnWithSunBlockLength = 400;
+            @net.minecraftforge.common.config.Config.Comment({"Length (in seconds) of the \"Sun Block\" effect after spawning"})
+            public static int spawnWithSunBlockLength = 120;
         }
 
     }
