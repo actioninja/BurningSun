@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import org.apache.logging.log4j.LogManager
 
 /**
  * Created by actioninja on 5/1/17.
@@ -20,6 +21,7 @@ object BurningSun
     const val MODID = "burningsun"
     const val VERSION = "@VERSION@"
 
+    var log = LogManager.getLogger(MODID)
 
     @Mod.EventHandler
     fun preInit(event:FMLPreInitializationEvent)
@@ -47,5 +49,11 @@ object BurningSun
     fun prependModId(string:String):String
     {
         return MODID + ":" + string
+    }
+
+    fun debugLog(string:String)
+    {
+        if(BurningSunConfig.debugLogging)
+            log.info(string)
     }
 }

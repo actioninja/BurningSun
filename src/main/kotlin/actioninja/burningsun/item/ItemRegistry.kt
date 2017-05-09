@@ -14,8 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 object ItemRegistry
 {
+    lateinit var itemTest: Item
 
-    lateinit var itemTest:Item
 
     fun initCommon()
     {

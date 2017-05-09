@@ -14,7 +14,7 @@ import net.minecraft.world.World
  * Created by actioninja on 5/7/17.
  */
 
-class ItemTest() : Item()
+class ItemTest : Item()
 {
     init
     {
