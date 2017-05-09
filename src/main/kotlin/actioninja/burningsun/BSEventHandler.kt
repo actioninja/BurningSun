@@ -20,8 +20,8 @@ class BSEventHandler {
 
     @SubscribeEvent
     fun onPlayerRespawn(event: PlayerEvent.Clone){
-        if(event.isWasDeath && Config.BSConfig.Player.spawnWithSunBlock) {
-            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, Config.BSConfig.Player.spawnWithSunBlockLength * 20))
+        if(event.isWasDeath && BurningSunConfig.BSConfig.Player.spawnWithSunBlock) {
+            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, BurningSunConfig.BSConfig.Player.spawnWithSunBlockLength * 20))
         }
     }
 
@@ -33,10 +33,10 @@ class BSEventHandler {
             var flag = true
             var itemstack = event.player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)
 
-            if(itemstack != null && Config.BSConfig.Player.helmetsBlockSun)
+            if(itemstack != null && BurningSunConfig.BSConfig.Player.helmetsBlockSun)
             {
-                if(itemstack.isItemStackDamageable && Config.BSConfig.Player.helmetsTakeDamage) {
-                    itemstack.itemDamage = itemstack.itemDamage + 1 * Config.BSConfig.Player.helmetDamageMultiplier
+                if(itemstack.isItemStackDamageable && BurningSunConfig.BSConfig.Player.helmetsTakeDamage) {
+                    itemstack.itemDamage = itemstack.itemDamage + 1 * BurningSunConfig.BSConfig.Player.helmetDamageMultiplier
                     if (itemstack.itemDamage >= itemstack.maxDamage) {
                         event.player.renderBrokenItemStack(itemstack)
                         event.player.setItemStackToSlot(EntityEquipmentSlot.HEAD, null)
@@ -47,10 +47,10 @@ class BSEventHandler {
 
             if(flag)
             {
-                if(Config.BSConfig.Player.burnInSun)
+                if(BurningSunConfig.BSConfig.Player.burnInSun)
                     event.player.setFire(8)
-                if(Config.BSConfig.Player.hyperLethal)
-                    event.player.attackEntityFrom(DamageSource.generic, Config.BSConfig.Player.hyperLethalDamage.toFloat())
+                if(BurningSunConfig.BSConfig.Player.hyperLethal)
+                    event.player.attackEntityFrom(DamageSource.generic, BurningSunConfig.BSConfig.Player.hyperLethalDamage.toFloat())
             }
         }
 

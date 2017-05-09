@@ -2,7 +2,7 @@ package actioninja.burningsun
 
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import actioninja.burningsun.Config;
+import actioninja.burningsun.BurningSunConfig;
 import actioninja.burningsun.item.ItemRegistry
 import actioninja.burningsun.potion.PotionRegistry
 import net.minecraftforge.common.MinecraftForge
@@ -23,6 +23,7 @@ object BurningSun {
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent)
     {
+        event.suggestedConfigurationFile
         MinecraftForge.EVENT_BUS.register(BSEventHandler())
         PotionRegistry.init()
         ItemRegistry.initCommon()
