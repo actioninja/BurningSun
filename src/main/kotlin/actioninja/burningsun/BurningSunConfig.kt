@@ -6,7 +6,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import java.io.File
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 /**
  * Created by actioninja on 5/8/17.
@@ -28,7 +27,7 @@ object BurningSunConfig
     var spawnWithSunBlockLength = 120
 
 
-    fun preInit(file: File)
+    fun preInit(file:File)
     {
         config = Configuration(file)
 
@@ -42,7 +41,7 @@ object BurningSunConfig
 
     fun syncFromFile()
     {
-       syncConfig(true, true)
+        syncConfig(true, true)
     }
 
     fun syncFromGUI()
@@ -55,7 +54,7 @@ object BurningSunConfig
         syncConfig(false, false)
     }
 
-    fun syncConfig(loadConfigFromFile: Boolean, readFieldsFromConfig: Boolean)
+    fun syncConfig(loadConfigFromFile:Boolean, readFieldsFromConfig:Boolean)
     {
         if (loadConfigFromFile)
             config.load()
@@ -84,7 +83,7 @@ object BurningSunConfig
         var propSpawnWithSunBlockLength = config.get(CATEGORY_NAME_GLOBAL, "spawnWithSunBlockLength", 120, "How long sun block lasts after spawning (in seconds)")
         propSpawnWithSunBlockLength.languageKey = "gui.spawnWithSunBlockLength"
 
-        val propOrderGlobal: MutableList<String> = mutableListOf()
+        val propOrderGlobal:MutableList<String> = mutableListOf()
         propOrderGlobal.add(propBurnInSun.name)
         propOrderGlobal.add(propHyperLethal.name)
         propOrderGlobal.add(propHyperLethalDamage.name)
@@ -96,7 +95,7 @@ object BurningSunConfig
         config.setCategoryPropertyOrder(CATEGORY_NAME_GLOBAL, propOrderGlobal)
         config.setCategoryComment(CATEGORY_NAME_GLOBAL, "These are settings that apply globally to all dimensions")
 
-        if(readFieldsFromConfig)
+        if (readFieldsFromConfig)
         {
             burnInSun = propBurnInSun.boolean
             hyperLethal = propHyperLethal.boolean
@@ -110,7 +109,7 @@ object BurningSunConfig
 
         propHelmetsBlockSun.set(helmetsBlockSun)
 
-        if(config.hasChanged())
+        if (config.hasChanged())
             config.save()
     }
 
@@ -118,14 +117,14 @@ object BurningSunConfig
     class ConfigEventHandler
     {
         @SubscribeEvent(priority = EventPriority.NORMAL)
-        fun onConfigChanged(event: ConfigChangedEvent.OnConfigChangedEvent)
+        fun onConfigChanged(event:ConfigChangedEvent.OnConfigChangedEvent)
         {
-            if(event.modID.equals(BurningSun.MODID) && !event.isWorldRunning)
+            if (event.modID.equals(BurningSun.MODID) && !event.isWorldRunning)
             {
-               if(event.configID.equals(CATEGORY_NAME_GLOBAL))
-               {
-                   syncFromGUI()
-               }
+                if (event.configID.equals(CATEGORY_NAME_GLOBAL))
+                {
+                    syncFromGUI()
+                }
             }
         }
     }

@@ -14,13 +14,16 @@ import net.minecraft.world.World
  * Created by actioninja on 5/7/17.
  */
 
-class ItemTest() : Item() {
-    init {
+class ItemTest() : Item()
+{
+    init
+    {
         this.maxStackSize = 1
         this.creativeTab = CreativeTabs.MISC
     }
 
-    override fun onItemRightClick(itemStackIn: ItemStack?, worldIn: World?, playerIn: EntityPlayer?, hand: EnumHand?): ActionResult<ItemStack> {
+    override fun onItemRightClick(itemStackIn:ItemStack?, worldIn:World?, playerIn:EntityPlayer?, hand:EnumHand?):ActionResult<ItemStack>
+    {
 
         playerIn?.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, 400))
 
