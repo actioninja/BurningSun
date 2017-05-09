@@ -6,7 +6,6 @@ import net.minecraftforge.common.config.Property
 import net.minecraftforge.fml.client.event.ConfigChangedEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
-import java.awt.Dimension
 import java.io.File
 
 /**
@@ -31,7 +30,7 @@ object BurningSunConfig
     //Dimensional
     val CATEGORY_NAME_DIMENSIONAL = "category_dimensional"
     var activeDimensions = "0,1"
-    var activeDimensionsAsInts = arrayListOf(0,1)
+    var activeDimensionsAsInts = arrayListOf(0, 1)
     var dimensionConfigSettings = mutableMapOf<String, DimensionConfig>()
 
     //Development
@@ -99,7 +98,7 @@ object BurningSunConfig
 
         var dimStringHolder = propActiveDimensions.string.split(",")
         activeDimensionsAsInts.clear()
-        for(dimString in dimStringHolder)
+        for (dimString in dimStringHolder)
         {
             BurningSun.debugLog("Processing active dim string entry '$dimString' to int")
             if (dimString.contains('-'))
@@ -109,13 +108,13 @@ object BurningSunConfig
                 var dimStringRangeHolder = dimString.split("-")
                 var dimLow = dimStringRangeHolder[0].toInt()
                 var dimHigh = dimStringRangeHolder[1].toInt()
-                while(dimLow < dimHigh)
+                while (dimLow < dimHigh)
                 {
                     activeDimensionsAsInts.add(dimLow)
                     BurningSun.debugLog("added $dimLow to int list")
                     dimLow++
                 }
-            }else
+            } else
             {
                 BurningSun.debugLog("'$dimString' is value, adding to int list")
                 activeDimensionsAsInts.add(dimString.toInt())
@@ -124,7 +123,7 @@ object BurningSunConfig
 
         var propDimData = mutableMapOf<String, PropDimensionConfig>()
 
-        for(dimId in dimStringHolder)
+        for (dimId in dimStringHolder)
         {
             propDimData[dimId] = PropDimensionConfig(config.get(dimId, "burnInSun", true),
                     config.get(dimId, "hyperLethal", false),
@@ -167,12 +166,12 @@ object BurningSunConfig
             spawnWithSunBlockLength = propSpawnWithSunBlockLength.int
             activeDimensions = propActiveDimensions.string
             debugLogging = propDebugLogging.boolean
-            for(dims in activeDimensions.split(","))
+            for (dims in activeDimensions.split(","))
             {
-                if(propDimData[dims] != null)
-                dimensionConfigSettings[dims] = DimensionConfig(propDimData[dims]!!.propBurnInSun.boolean,
-                        propDimData[dims]!!.propHyperLethal.boolean,
-                        propDimData[dims]!!.propHyperLethalDamage.int)
+                if (propDimData[dims] != null)
+                    dimensionConfigSettings[dims] = DimensionConfig(propDimData[dims]!!.propBurnInSun.boolean,
+                            propDimData[dims]!!.propHyperLethal.boolean,
+                            propDimData[dims]!!.propHyperLethalDamage.int)
                 else
                     BurningSun.log.error("Active dimension config props were not intitialized properly!  Activedim '$dims' was not initialized correctly")
 
@@ -185,8 +184,8 @@ object BurningSunConfig
             config.save()
     }
 
-    data class DimensionConfig(val burnInSun: Boolean = true, val hyperLethal: Boolean = false, val hyperLethalDamage: Int = 10)
-    data class PropDimensionConfig(val propBurnInSun: Property, val propHyperLethal: Property, val propHyperLethalDamage: Property)
+    data class DimensionConfig(val burnInSun:Boolean = true, val hyperLethal:Boolean = false, val hyperLethalDamage:Int = 10)
+    data class PropDimensionConfig(val propBurnInSun:Property, val propHyperLethal:Property, val propHyperLethalDamage:Property)
 
     class ConfigEventHandler
     {

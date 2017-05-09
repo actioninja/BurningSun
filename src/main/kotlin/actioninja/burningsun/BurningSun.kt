@@ -53,7 +53,7 @@ object BurningSun
 
     fun debugLog(string:String)
     {
-        if(BurningSunConfig.debugLogging)
+        if (BurningSunConfig.debugLogging)
             log.info(string)
     }
 }
