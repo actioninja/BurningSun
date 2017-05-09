@@ -94,7 +94,7 @@ object BurningSunConfig
         var propSpawnWithSunBlockLength = config.get(CATEGORY_NAME_GLOBAL, "spawnWithSunBlockLength", 120, "How long sun block lasts after spawning (in seconds)")
         propSpawnWithSunBlockLength.languageKey = "gui.spawnWithSunBlockLength"
 
-        var propActiveDimensions = config.get(CATEGORY_NAME_DIMENSIONAL, "activeDimensions", "0,1")
+        var propActiveDimensions = config.get(CATEGORY_NAME_DIMENSIONAL, "activeDimensions", "0", "Example string for dims 0, 1, 100 through 105, and 999: \"0,1,100-105,999\"")
         propActiveDimensions.languageKey = "gui.activeDimensions"
 
         var dimStringHolder = propActiveDimensions.string.split(",")

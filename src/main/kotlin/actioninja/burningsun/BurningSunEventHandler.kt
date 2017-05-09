@@ -27,33 +27,61 @@ class BurningSunEventHandler
     @SubscribeEvent
     fun playerTickEvent(event:TickEvent.PlayerTickEvent)
     {
-        if (event.player.world.isDaytime && event.player.world.canSeeSky(event.player.position) && !event.player.isCreative && !event.player.isPotionActive(PotionRegistry.sunBlock))
+        if (BurningSunConfig.activeDimensionsAsInts.contains(event.player.dimension))
         {
-            var flag = true
-            var itemstack = event.player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)
-
-            if (itemstack != null && BurningSunConfig.helmetsBlockSun)
+            if (event.player.world.isDaytime && event.player.world.canSeeSky(event.player.position) && !event.player.isCreative && !event.player.isPotionActive(PotionRegistry.sunBlock))
             {
-                if (itemstack.isItemStackDamageable && BurningSunConfig.helmetsTakeDamage)
+                var flag = true
+                var itemstack = event.player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)
+
+                if (itemstack != null && BurningSunConfig.helmetsBlockSun)
                 {
-                    itemstack.itemDamage = itemstack.itemDamage + 1 * BurningSunConfig.helmetDamageMultiplier
-                    if (itemstack.itemDamage >= itemstack.maxDamage)
+                    if (itemstack.isItemStackDamageable && BurningSunConfig.helmetsTakeDamage)
                     {
-                        event.player.renderBrokenItemStack(itemstack)
-                        event.player.setItemStackToSlot(EntityEquipmentSlot.HEAD, null)
+                        itemstack.itemDamage = itemstack.itemDamage + 1 * BurningSunConfig.helmetDamageMultiplier
+                        if (itemstack.itemDamage >= itemstack.maxDamage)
+                        {
+                            event.player.renderBrokenItemStack(itemstack)
+                            event.player.setItemStackToSlot(EntityEquipmentSlot.HEAD, null)
+                        }
                     }
+                    flag = false
                 }
-                flag = false
-            }
 
-            if (flag)
-            {
-                if (BurningSunConfig.burnInSun)
-                    event.player.setFire(8)
-                if (BurningSunConfig.hyperLethal)
-                    event.player.attackEntityFrom(DamageSource.generic, BurningSunConfig.hyperLethalDamage.toFloat())
+                if (flag)
+                {
+                    var dimString = getStringOfDimRange(event.player.dimension)
+                    if (dimString != "none")
+                        if (BurningSunConfig.dimensionConfigSettings[dimString]!!.burnInSun)
+                            event.player.setFire(8)
+                        if (BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethal)
+                            event.player.attackEntityFrom(DamageSource.generic, BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethalDamage.toFloat())
+                    else
+                            BurningSun.log.error("Just attempted to access data for a dimension not in active dimensions!  Report this to the author!")
+                }
             }
         }
 
     }
 }
+
+fun getStringOfDimRange(inputInt:Int):String
+{
+    for ((key, value) in BurningSunConfig.dimensionConfigSettings)
+    {
+        if (key.contains("-"))
+        {
+            var splitKey = key.split("-")
+            var lowDim = splitKey[0].toInt()
+            var highDim = splitKey[1].toInt()
+            if (inputInt in lowDim..highDim)
+                return key
+        } else
+        {
+            if (key == inputInt.toString())
+                return key
+        }
+    }
+    return "none"
+}
+
