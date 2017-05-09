@@ -16,26 +16,23 @@ object ItemRegistry {
 
     lateinit var itemTest: Item
 
-    fun initCommon()
-    {
+    fun initCommon() {
         itemTest = registerItem(ItemTest(), "itemTest", "itemTest")
     }
+
     @SideOnly(Side.CLIENT)
-    fun initClient()
-    {
+    fun initClient() {
         registerItemModel(itemTest)
     }
 
-    fun registerItem(item: Item, name: String, regName: String):Item
-    {
+    fun registerItem(item: Item, name: String, regName: String): Item {
         item.setUnlocalizedName(name).setRegistryName(regName)
         GameRegistry.register(item)
         return item
     }
 
     @SideOnly(Side.CLIENT)
-    fun registerItemModel(item: Item)
-    {
+    fun registerItemModel(item: Item) {
         val itemModelResourceLocation = ModelResourceLocation(BurningSun.prependModId(item.unlocalizedName))
         ModelLoader.setCustomModelResourceLocation(item, 0, itemModelResourceLocation)
     }

@@ -13,16 +13,18 @@ import net.minecraftforge.fml.relauncher.SideOnly
  * Created by actioninja on 5/4/17.
  */
 
-class PotionBurningSun(name: String, texture: ResourceLocation, badEffect: Boolean, potionColor: Int, iconIndexX: Int, iconIndexY: Int) : Potion(badEffect, potionColor){
+class PotionBurningSun(name: String, texture: ResourceLocation, badEffect: Boolean, potionColor: Int, iconIndexX: Int, iconIndexY: Int) : Potion(badEffect, potionColor) {
     init {
         this.setPotionName(name)
         this.setIconIndex(iconIndexX, iconIndexY)
     }
-    companion object{
+
+    companion object {
         val texture = ResourceLocation(BurningSun.MODID, "textures/misc/potions.png")
     }
-    override fun shouldRenderInvText(effect: PotionEffect):Boolean {
-       return true
+
+    override fun shouldRenderInvText(effect: PotionEffect): Boolean {
+        return true
     }
 
     fun apply(entity: EntityLivingBase, duration: Int, level: Int = 0): PotionEffect {
@@ -31,9 +33,9 @@ class PotionBurningSun(name: String, texture: ResourceLocation, badEffect: Boole
         return effect
     }
 
-    fun getLevel(entity: EntityLivingBase): Int{
+    fun getLevel(entity: EntityLivingBase): Int {
         val effect = entity.getActivePotionEffect(this)
-        if(effect != null)
+        if (effect != null)
             return effect.amplifier
         return 0
     }

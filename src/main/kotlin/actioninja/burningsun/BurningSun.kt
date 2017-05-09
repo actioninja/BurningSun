@@ -21,8 +21,7 @@ object BurningSun {
 
 
     @Mod.EventHandler
-    fun preInit(event: FMLPreInitializationEvent)
-    {
+    fun preInit(event: FMLPreInitializationEvent) {
         event.suggestedConfigurationFile
         MinecraftForge.EVENT_BUS.register(BSEventHandler())
         PotionRegistry.init()
@@ -31,19 +30,16 @@ object BurningSun {
 
     @Mod.EventHandler
     @SideOnly(Side.CLIENT)
-    fun preInitClient(event: FMLPreInitializationEvent)
-    {
+    fun preInitClient(event: FMLPreInitializationEvent) {
         ItemRegistry.initClient()
     }
 
     @Mod.EventHandler
-    fun init(event: FMLInitializationEvent)
-    {
+    fun init(event: FMLInitializationEvent) {
 
     }
 
-    fun prependModId(string: String):String
-    {
+    fun prependModId(string: String): String {
         return MODID + ":" + string
     }
 }

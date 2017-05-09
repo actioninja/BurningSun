@@ -14,9 +14,8 @@ import net.minecraft.world.World
  * Created by actioninja on 5/7/17.
  */
 
-class ItemTest(): Item()
-{
-    init{
+class ItemTest() : Item() {
+    init {
         this.maxStackSize = 1
         this.creativeTab = CreativeTabs.MISC
     }
