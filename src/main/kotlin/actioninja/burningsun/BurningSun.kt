@@ -2,7 +2,6 @@ package actioninja.burningsun
 
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import actioninja.burningsun.BurningSunConfig;
 import actioninja.burningsun.item.ItemRegistry
 import actioninja.burningsun.potion.PotionRegistry
 import net.minecraftforge.common.MinecraftForge
@@ -15,15 +14,16 @@ import net.minecraftforge.fml.relauncher.SideOnly
  */
 
 
-@Mod(modid = BurningSun.MODID, name = "Burning Sun", version = "@VERSION@", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter", dependencies = "required-after:forgelin@[1.3.1,);")
+@Mod(modid = BurningSun.MODID, name = "Burning Sun", version = BurningSun.VERSION, modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter", dependencies = "required-after:forgelin@[1.3.1,);")
 object BurningSun {
-    const val MODID: String = "burningsun"
+    const val MODID = "burningsun"
+    const val VERSION = "@VERSION@"
 
 
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
-        event.suggestedConfigurationFile
-        MinecraftForge.EVENT_BUS.register(BSEventHandler())
+        BurningSunConfig.preInit(event.suggestedConfigurationFile)
+        MinecraftForge.EVENT_BUS.register(BurningSunEventHandler())
         PotionRegistry.init()
         ItemRegistry.initCommon()
     }
@@ -32,6 +32,7 @@ object BurningSun {
     @SideOnly(Side.CLIENT)
     fun preInitClient(event: FMLPreInitializationEvent) {
         ItemRegistry.initClient()
+        BurningSunConfig.preInitClient()
     }
 
     @Mod.EventHandler
