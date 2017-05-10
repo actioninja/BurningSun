@@ -52,11 +52,12 @@ class BurningSunEventHandler
                 {
                     var dimString = getStringOfDimRange(event.player.dimension)
                     if (dimString != "none")
+                    {
                         if (BurningSunConfig.dimensionConfigSettings[dimString]!!.burnInSun)
                             event.player.setFire(8)
-                    if (BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethal)
-                        event.player.attackEntityFrom(DamageSource.generic, BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethalDamage.toFloat())
-                    else
+                        if (BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethal)
+                            event.player.attackEntityFrom(DamageSource.generic, BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethalDamage.toFloat())
+                    } else
                         BurningSun.log.error("Just attempted to access data for a dimension not in active dimensions!  Report this to the author!")
                 }
             }
