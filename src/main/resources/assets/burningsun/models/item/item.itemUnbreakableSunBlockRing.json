@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "burningsun:item/placeholder"
+    "layer0": "burningsun:item/ring"
   }
 }

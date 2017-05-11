@@ -1,6 +1,8 @@
 package actioninja.burningsun
 
 import actioninja.burningsun.item.ItemRegistry
+import actioninja.burningsun.item.LootManager
+import actioninja.burningsun.item.RecipeManager
 import actioninja.burningsun.potion.PotionRegistry
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.common.Mod
@@ -30,6 +32,7 @@ object BurningSun
         MinecraftForge.EVENT_BUS.register(BurningSunEventHandler())
         PotionRegistry.init()
         ItemRegistry.initCommon()
+        MinecraftForge.EVENT_BUS.register(LootManager())
     }
 
     @Mod.EventHandler
@@ -43,7 +46,7 @@ object BurningSun
     @Mod.EventHandler
     fun init(event:FMLInitializationEvent)
     {
-
+        RecipeManager.initRecipes()
     }
 
     fun prependModId(string:String):String

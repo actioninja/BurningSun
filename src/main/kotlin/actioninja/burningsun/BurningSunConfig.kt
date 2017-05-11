@@ -30,6 +30,14 @@ object BurningSunConfig
     var activeDimensionsAsInts = arrayListOf(0, 1)
     var dimensionConfigSettings = mutableMapOf<String, DimensionConfig>()
 
+    //Compat
+    val CATEGORY_NAME_COMPAT = "category_compat"
+    var baublesIntegrationEnabled = true
+    var ringTakesDamageWhenInSun = false
+    var ringSpawnsInChests = true
+    var unbreakableRingSpawnsInChests = false
+    var ringCraftable = true
+
     //Development
     val CATEGORY_NAME_DEBUG = "category_debug"
     var debugLogging = true
@@ -118,6 +126,17 @@ object BurningSunConfig
                     config.get(dimId, "hyperLethalDamage", 10))
         }
 
+        var propBaublesIntegrationEnabled = config.get(CATEGORY_NAME_COMPAT, "baublesIntegrationEnabled", true, "Whether or not baubles integration is enabled at all.\n" +
+                "It autodetects anyways, so this is more if you want to force disable for some reason")
+
+        var propRingTakesDamageWhenInSun = config.get(CATEGORY_NAME_COMPAT, "ringTakesDamageWhenInSun", false, "Whether or not the ring added by baubles integration takes damage while blocking sun")
+
+        var propRingSpawnsInChest = config.get(CATEGORY_NAME_COMPAT, "ringSpawnsInChests", true, "Whether or not the ring spawns in dungeon chests")
+
+        var propUnbreakableRingSpawnsInChests = config.get(CATEGORY_NAME_COMPAT, "unbreakableRingSpawnsInChests", false, "Whether or not the unbreakable ring spawns in chests.  This does nothing if the unbreakable ring is not enabled")
+
+        var propRingCraftable = config.get(CATEGORY_NAME_COMPAT, "ringCraftable", true, "Whether the default crafting recipe for the ring is enabled or not")
+
         var propDebugLogging = config.get(CATEGORY_NAME_DEBUG, "debugLogging", true, "Enable debug logging")
 
         var propOrderGlobal:MutableList<String> = mutableListOf()
@@ -139,6 +158,16 @@ object BurningSunConfig
                 "so for example, to enable the overworld, dimension 2, and dimensions 100-105, you would use the string \"0,2,100-105\"\n+" +
                 "Once you have entered an active dimensions string, start the game and new config sections will be generated for each dimension")
 
+        var propOrderCompat = mutableListOf<String>()
+        propOrderCompat.add(propBaublesIntegrationEnabled.name)
+        propOrderCompat.add(propRingTakesDamageWhenInSun.name)
+        propOrderCompat.add(propRingSpawnsInChest.name)
+        propOrderCompat.add(propUnbreakableRingSpawnsInChests.name)
+        propOrderCompat.add(propRingCraftable.name)
+        config.setCategoryPropertyOrder(CATEGORY_NAME_COMPAT, propOrderCompat)
+        config.setCategoryComment(CATEGORY_NAME_COMPAT, "Some settings related to inter-mod compatability")
+
+
         if (readFieldsFromConfig)
         {
             helmetsBlockSun = propHelmetsBlockSun.boolean
@@ -158,6 +187,11 @@ object BurningSunConfig
                     BurningSun.log.error("Active dimension config props were not intitialized properly!  Activedim '$dims' was not initialized correctly")
 
             }
+            baublesIntegrationEnabled = propBaublesIntegrationEnabled.boolean
+            ringTakesDamageWhenInSun = propRingTakesDamageWhenInSun.boolean
+            ringSpawnsInChests = propRingSpawnsInChest.boolean
+            unbreakableRingSpawnsInChests = propRingSpawnsInChest.boolean
+            ringCraftable = propRingCraftable.boolean
         }
 
         propHelmetsBlockSun.set(helmetsBlockSun)

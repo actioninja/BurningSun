@@ -1,6 +1,7 @@
 package actioninja.burningsun.item
 
 import actioninja.burningsun.BurningSun
+import actioninja.burningsun.BurningSunConfig
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.item.Item
 import net.minecraftforge.client.model.ModelLoader
@@ -16,23 +17,27 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 object ItemRegistry
 {
-    lateinit var itemTest:Item
     lateinit var itemSunBlockRing:Item
+    lateinit var itemUnbreakableSunBlockRing:Item
 
 
     fun initCommon()
     {
-        itemTest = registerItem(ItemTest(), "itemTest", "itemTest")
-        if(Loader.isModLoaded("Baubles"))
-        itemSunBlockRing = registerItem(ItemSunBlockRing(), "itemSunBlockRing", "itemSunBlockRing")
+        if(Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+        {
+            itemSunBlockRing = registerItem(ItemSunBlockRing(), "itemSunBlockRing", "itemSunBlockRing")
+            itemUnbreakableSunBlockRing = registerItem(ItemUnbreakableSunBlockRing(), "itemUnbreakableSunBlockRing", "itemUnbreakableSunBlockRing")
+        }
     }
 
     @SideOnly(Side.CLIENT)
     fun initClient()
     {
-        registerItemModel(itemTest)
-        if(Loader.isModLoaded("Baubles"))
-        registerItemModel(itemSunBlockRing)
+        if(Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+        {
+            registerItemModel(itemSunBlockRing)
+            registerItemModel(itemUnbreakableSunBlockRing)
+        }
     }
 
     fun registerItem(item:Item, name:String, regName:String):Item

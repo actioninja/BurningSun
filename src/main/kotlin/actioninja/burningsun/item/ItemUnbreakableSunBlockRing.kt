@@ -3,32 +3,27 @@ package actioninja.burningsun.item
 import actioninja.burningsun.potion.PotionRegistry
 import baubles.api.BaubleType
 import baubles.api.IBauble
-import net.minecraft.client.audio.Sound
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
-import net.minecraft.util.SoundEvent
-import net.minecraftforge.fml.relauncher.Side
-import net.minecraftforge.fml.relauncher.SideOnly
 
 /**
  * Created by actioninja on 5/10/17.
  */
 
-class ItemSunBlockRing : Item(), IBauble
+class ItemUnbreakableSunBlockRing : Item(), IBauble
 {
     init{
         this.maxStackSize = 1
-        this.maxDamage = 36000
+        this.maxDamage = 0
         this.creativeTab = CreativeTabs.TOOLS
     }
 
-    override fun getBaubleType(item: ItemStack): BaubleType
+    override fun getBaubleType(item:ItemStack):BaubleType
     {
         return BaubleType.RING
     }
@@ -46,7 +41,7 @@ class ItemSunBlockRing : Item(), IBauble
 
     override fun getRarity(stack:ItemStack?):EnumRarity
     {
-        return EnumRarity.RARE
+        return EnumRarity.EPIC
     }
 
     override fun onEquipped(itemstack:ItemStack?, player:EntityLivingBase?)

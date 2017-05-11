@@ -1,4 +1,8 @@
 ------------------------------------------------------
+Version 0.6.0
+------------------------------------------------------
+Added some more config options related to baubles integration, as well as an actual crafting recipe for the ring
+------------------------------------------------------
 Version 0.5.0
 ------------------------------------------------------
 Added optional baubles integration, if baubles is installed, a "Ring of sun protection" is added that applies sun block when worn

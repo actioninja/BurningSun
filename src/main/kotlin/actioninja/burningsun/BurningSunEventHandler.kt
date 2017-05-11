@@ -1,10 +1,13 @@
 package actioninja.burningsun
 
+import actioninja.burningsun.item.ItemRegistry
 import actioninja.burningsun.potion.PotionRegistry
+import baubles.api.BaublesApi
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.potion.PotionEffect
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.player.PlayerEvent
+import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
@@ -60,6 +63,35 @@ class BurningSunEventHandler
                     } else
                         BurningSun.log.error("Just attempted to access data for a dimension not in active dimensions!  Report this to the author!")
                 }
+            } else if (Loader.isModLoaded("Baubles") && BurningSunConfig.ringTakesDamageWhenInSun)
+            {
+                val baublesInventory = BaublesApi.getBaublesHandler(event.player)
+                val ringSlot1 = baublesInventory.getStackInSlot(1)
+                val ringSlot2 = baublesInventory.getStackInSlot(2)
+                var targetSlot = 0
+                var flag = false
+                if (ringSlot1 != null)
+                {
+                    if (ringSlot1.item == ItemRegistry.itemSunBlockRing)
+                    {
+                        flag = true
+                        targetSlot = 1
+                    }
+                } else if (ringSlot2 != null)
+                {
+                    if (ringSlot2.item == ItemRegistry.itemSunBlockRing)
+                    {
+                        flag = true
+                        targetSlot = 2
+                    }
+                }
+                if (event.player.world.isDaytime && event.player.world.canSeeSky(event.player.position) && !event.player.isCreative && flag)
+                {
+                    val item = baublesInventory.getStackInSlot(targetSlot)
+                    item.itemDamage = item.itemDamage + 1
+                    baublesInventory.setStackInSlot(targetSlot, item)
+                }
+
             }
         }
 
