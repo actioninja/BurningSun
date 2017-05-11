@@ -5,6 +5,7 @@ import actioninja.burningsun.item.LootManager
 import actioninja.burningsun.item.RecipeManager
 import actioninja.burningsun.potion.PotionRegistry
 import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
@@ -32,7 +33,8 @@ object BurningSun
         MinecraftForge.EVENT_BUS.register(BurningSunEventHandler())
         PotionRegistry.init()
         ItemRegistry.initCommon()
-        MinecraftForge.EVENT_BUS.register(LootManager())
+        if(Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+            MinecraftForge.EVENT_BUS.register(LootManager())
     }
 
     @Mod.EventHandler
@@ -46,7 +48,8 @@ object BurningSun
     @Mod.EventHandler
     fun init(event:FMLInitializationEvent)
     {
-        RecipeManager.initRecipes()
+        if(Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+            RecipeManager.initRecipes()
     }
 
     fun prependModId(string:String):String

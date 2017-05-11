@@ -1,4 +1,8 @@
 ------------------------------------------------------
+Version 0.6.1
+------------------------------------------------------
+Fixes a crash when generating world without baubles installed
+------------------------------------------------------
 Version 0.6.0
 ------------------------------------------------------
 Added some more config options related to baubles integration, as well as an actual crafting recipe for the ring
