@@ -20,7 +20,7 @@ class BurningSunEventHandler
     {
         if (event.isWasDeath && BurningSunConfig.spawnWithSunBlock)
         {
-            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, BurningSunConfig.spawnWithSunBlockLength * 20))
+            event.entityPlayer.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, BurningSunConfig.spawnWithSunBlockLength * 20, 0, false, true))
         }
     }
 
