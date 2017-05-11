@@ -18,9 +18,6 @@ object BurningSunConfig
 
     //globals
     val CATEGORY_NAME_GLOBAL = "category_global"
-    var burnInSun = true
-    var hyperLethal = false
-    var hyperLethalDamage = 10
     var helmetsBlockSun = false
     var helmetsTakeDamage = false
     var helmetDamageMultiplier = 1
@@ -68,15 +65,6 @@ object BurningSunConfig
     {
         if (loadConfigFromFile)
             config.load()
-
-        var propBurnInSun = config.get(CATEGORY_NAME_GLOBAL, "burnInSun", true, "Whether you burn in the sun or not")
-        propBurnInSun.languageKey = "gui.burnInSun"
-
-        var propHyperLethal = config.get(CATEGORY_NAME_GLOBAL, "hyperLethal", false, "An extra 'hyper lethal' mode that does a configurable amount of damage per tick")
-        propHyperLethal.languageKey = "gui.hyperLethal"
-
-        var propHyperLethalDamage = config.get(CATEGORY_NAME_GLOBAL, "hyperLethalDamage", 10)
-        propHyperLethalDamage.languageKey = "gui.hyperLethalDamage"
 
         var propHelmetsBlockSun = config.get(CATEGORY_NAME_GLOBAL, "helmetsBlockSun", false, "Whether helmets block sun")
         propHelmetsBlockSun.languageKey = "gui.helmetsBlockSun"
@@ -133,9 +121,6 @@ object BurningSunConfig
         var propDebugLogging = config.get(CATEGORY_NAME_DEBUG, "debugLogging", true, "Enable debug logging")
 
         var propOrderGlobal:MutableList<String> = mutableListOf()
-        propOrderGlobal.add(propBurnInSun.name)
-        propOrderGlobal.add(propHyperLethal.name)
-        propOrderGlobal.add(propHyperLethalDamage.name)
         propOrderGlobal.add(propHelmetsBlockSun.name)
         propOrderGlobal.add(propHelmetsTakeDamage.name)
         propOrderGlobal.add(propHelmetDamageMultiplier.name)
@@ -156,9 +141,6 @@ object BurningSunConfig
 
         if (readFieldsFromConfig)
         {
-            burnInSun = propBurnInSun.boolean
-            hyperLethal = propHyperLethal.boolean
-            hyperLethalDamage = propHyperLethalDamage.int
             helmetsBlockSun = propHelmetsBlockSun.boolean
             helmetsTakeDamage = propHelmetsTakeDamage.boolean
             helmetDamageMultiplier = propHelmetDamageMultiplier.int
