@@ -33,7 +33,7 @@ object BurningSun
         MinecraftForge.EVENT_BUS.register(BurningSunEventHandler())
         PotionRegistry.init()
         ItemRegistry.initCommon()
-        if(Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+        if (Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
             MinecraftForge.EVENT_BUS.register(LootManager())
     }
 
@@ -48,7 +48,7 @@ object BurningSun
     @Mod.EventHandler
     fun init(event:FMLInitializationEvent)
     {
-        if(Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+        if (Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
             RecipeManager.initRecipes()
     }
 

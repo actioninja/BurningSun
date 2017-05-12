@@ -3,18 +3,13 @@ package actioninja.burningsun.item
 import actioninja.burningsun.potion.PotionRegistry
 import baubles.api.BaubleType
 import baubles.api.IBauble
-import net.minecraft.client.audio.Sound
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
-import net.minecraft.util.SoundEvent
-import net.minecraftforge.fml.relauncher.Side
-import net.minecraftforge.fml.relauncher.SideOnly
 
 /**
  * Created by actioninja on 5/10/17.
@@ -22,20 +17,21 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class ItemSunBlockRing : Item(), IBauble
 {
-    init{
+    init
+    {
         this.maxStackSize = 1
         this.maxDamage = 36000
         this.creativeTab = CreativeTabs.TOOLS
     }
 
-    override fun getBaubleType(item: ItemStack): BaubleType
+    override fun getBaubleType(item:ItemStack):BaubleType
     {
         return BaubleType.RING
     }
 
     override fun onWornTick(itemstack:ItemStack?, player:EntityLivingBase?)
     {
-        if(player!!.ticksExisted % 39 == 0)
+        if (player!!.ticksExisted % 39 == 0)
             player.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, 40, 0, false, false))
     }
 

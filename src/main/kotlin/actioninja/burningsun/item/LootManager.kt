@@ -8,8 +8,6 @@ import net.minecraft.world.storage.loot.conditions.LootCondition
 import net.minecraft.world.storage.loot.conditions.RandomChance
 import net.minecraft.world.storage.loot.functions.LootFunction
 import net.minecraft.world.storage.loot.functions.SetCount
-import net.minecraftforge.common.DungeonHooks
-import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.LootTableLoadEvent
 import net.minecraftforge.fml.common.Mod
 
@@ -20,9 +18,9 @@ import net.minecraftforge.fml.common.Mod
 class LootManager
 {
     @Mod.EventHandler
-    fun initLoot(event: LootTableLoadEvent)
+    fun initLoot(event:LootTableLoadEvent)
     {
-        if(!event.name.resourceDomain.equals("minecraft") && !(event.name.resourcePath.contains("CHEST")))
+        if (!event.name.resourceDomain.equals("minecraft") && !(event.name.resourcePath.contains("CHEST")))
             return
 
         var conditions = ArrayList<LootCondition>()
@@ -37,9 +35,9 @@ class LootManager
         var unbreakableRing = LootEntryItem(ItemRegistry.itemUnbreakableSunBlockRing, 50, 5, lcount, lchance, BurningSun.prependModId("unbreakableRingLoot"))
 
         var main = event.table.getPool("main")
-        if(BurningSunConfig.ringSpawnsInChests)
+        if (BurningSunConfig.ringSpawnsInChests)
             main.addEntry(ring)
-        if(BurningSunConfig.unbreakableRingSpawnsInChests)
+        if (BurningSunConfig.unbreakableRingSpawnsInChests)
             main.addEntry(unbreakableRing)
     }
 }

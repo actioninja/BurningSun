@@ -17,7 +17,8 @@ import net.minecraft.potion.PotionEffect
 
 class ItemUnbreakableSunBlockRing : Item(), IBauble
 {
-    init{
+    init
+    {
         this.maxStackSize = 1
         this.maxDamage = 0
         this.creativeTab = CreativeTabs.TOOLS
@@ -30,7 +31,7 @@ class ItemUnbreakableSunBlockRing : Item(), IBauble
 
     override fun onWornTick(itemstack:ItemStack?, player:EntityLivingBase?)
     {
-        if(player!!.ticksExisted % 39 == 0)
+        if (player!!.ticksExisted % 39 == 0)
             player.addPotionEffect(PotionEffect(PotionRegistry.sunBlock, 40, 0, false, false))
     }
 
