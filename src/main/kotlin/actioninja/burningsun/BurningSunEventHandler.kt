@@ -59,11 +59,11 @@ class BurningSunEventHandler
                         if (BurningSunConfig.dimensionConfigSettings[dimString]!!.burnInSun)
                             event.player.setFire(8)
                         if (BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethal)
-                            event.player.attackEntityFrom(DamageSource.generic, BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethalDamage.toFloat())
+                            event.player.attackEntityFrom(DamageSource.GENERIC, BurningSunConfig.dimensionConfigSettings[dimString]!!.hyperLethalDamage.toFloat())
                     } else
                         BurningSun.log.error("Just attempted to access data for a dimension not in active dimensions!  Report this to the author!")
                 }
-            } else if (Loader.isModLoaded("Baubles") && BurningSunConfig.ringTakesDamageWhenInSun)
+            } else if (Loader.isModLoaded("baubles") && BurningSunConfig.ringTakesDamageWhenInSun)
             {
                 val baublesInventory = BaublesApi.getBaublesHandler(event.player)
                 val ringSlot1 = baublesInventory.getStackInSlot(1)

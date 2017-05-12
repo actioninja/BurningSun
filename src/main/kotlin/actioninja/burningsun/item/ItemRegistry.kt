@@ -22,7 +22,7 @@ object ItemRegistry
 
     fun initCommon()
     {
-        if (Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+        if (Loader.isModLoaded("baubles") && BurningSunConfig.baublesIntegrationEnabled)
         {
             itemSunBlockRing = registerItem(ItemSunBlockRing(), "itemSunBlockRing", "itemSunBlockRing")
             itemUnbreakableSunBlockRing = registerItem(ItemUnbreakableSunBlockRing(), "itemUnbreakableSunBlockRing", "itemUnbreakableSunBlockRing")
@@ -32,7 +32,7 @@ object ItemRegistry
     @SideOnly(Side.CLIENT)
     fun initClient()
     {
-        if (Loader.isModLoaded("Baubles") && BurningSunConfig.baublesIntegrationEnabled)
+        if (Loader.isModLoaded("baubles") && BurningSunConfig.baublesIntegrationEnabled)
         {
             registerItemModel(itemSunBlockRing)
             registerItemModel(itemUnbreakableSunBlockRing)
