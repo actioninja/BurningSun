@@ -15,9 +15,9 @@ The github feature for outlining license properties is pretty good, but I'll als
 3. Freely redistribute downloaded versions of this mod for free, along with the source code
 4. Modify the source code of the mod with no limitations
 5. Redistribute your modifications of the source code and compiled versions with some limitations:
-  1. Your modifications also need to be open source
-  2. Your modifications also need to be licensed under GPL v3
-  3. You need to clearly state what your changes are compared to the base version
+  * Your modifications also need to be open source
+  * Your modifications also need to be licensed under GPL v3
+  * You need to clearly state what your changes are compared to the base version
 
 ##### You can't:
 1. Demand liability for any damage it may or may not cause
