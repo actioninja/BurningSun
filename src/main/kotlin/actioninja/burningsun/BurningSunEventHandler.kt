@@ -37,7 +37,7 @@ class BurningSunEventHandler
                 var flag = true
                 var itemstack = event.player.getItemStackFromSlot(EntityEquipmentSlot.HEAD)
 
-                if (itemstack != null && BurningSunConfig.helmetsBlockSun)
+                if (!itemstack.isEmpty && BurningSunConfig.helmetsBlockSun)
                 {
                     if (itemstack.isItemStackDamageable && BurningSunConfig.helmetsTakeDamage)
                     {
