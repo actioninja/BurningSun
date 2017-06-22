@@ -1,4 +1,8 @@
 ------------------------------------------------------
+Version 2.0.2
+------------------------------------------------------
+Fixes a crash with the helmetsBlockSun config option because I forgot to fix the part that actually breaks the helmet.  Whoops.
+------------------------------------------------------
 Version 2.0.1
 ------------------------------------------------------
 Fixes a problem with the helmetsBlockSun config option that made it so you never burned in the sun.

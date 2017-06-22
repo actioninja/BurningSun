@@ -4,6 +4,7 @@ import actioninja.burningsun.item.ItemRegistry
 import actioninja.burningsun.potion.PotionRegistry
 import baubles.api.BaublesApi
 import net.minecraft.inventory.EntityEquipmentSlot
+import net.minecraft.item.ItemStack
 import net.minecraft.potion.PotionEffect
 import net.minecraft.util.DamageSource
 import net.minecraftforge.event.entity.player.PlayerEvent
@@ -45,7 +46,7 @@ class BurningSunEventHandler
                         if (itemstack.itemDamage >= itemstack.maxDamage)
                         {
                             event.player.renderBrokenItemStack(itemstack)
-                            event.player.setItemStackToSlot(EntityEquipmentSlot.HEAD, null)
+                            event.player.setItemStackToSlot(EntityEquipmentSlot.HEAD, ItemStack.EMPTY)
                         }
                     }
                     flag = false
